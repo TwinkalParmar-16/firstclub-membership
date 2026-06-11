@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class UpdateTierRequest {
 
-    @NotNull
+    @NotNull(message = "newTier is required (SILVER, GOLD, PLATINUM)")
     private TierType tierType;
 }

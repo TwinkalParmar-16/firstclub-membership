@@ -9,42 +9,28 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository
 public class MembershipRepository {
 
-    private final Map<String, MembershipSubscription> subscriptions =
-            new ConcurrentHashMap<>();
+    private final Map<String, MembershipSubscription> subscriptions = new ConcurrentHashMap<>();
 
-    public MembershipSubscription save(
-            MembershipSubscription subscription) {
+    public MembershipSubscription save(MembershipSubscription subscription) {
 
-        subscriptions.put(
-                subscription.getUserId(),
-                subscription
-        );
-
+        subscriptions.put(subscription.getUserId(), subscription);
         return subscription;
     }
 
-    public MembershipSubscription findByUserId(
-            String userId) {
-
+    public MembershipSubscription findByUserId(String userId) {
         return subscriptions.get(userId);
     }
 
     public void delete(String userId) {
-
         subscriptions.remove(userId);
     }
 
     public boolean exists(String userId) {
-
         return subscriptions.containsKey(userId);
     }
 
-    public MembershipSubscription saveIfAbsent(
-            MembershipSubscription subscription) {
-
-        return subscriptions.putIfAbsent(
-                subscription.getUserId(),
-                subscription
+    public MembershipSubscription saveIfAbsent(MembershipSubscription subscription) {
+        return subscriptions.putIfAbsent(subscription.getUserId(), subscription
         );
     }
 }

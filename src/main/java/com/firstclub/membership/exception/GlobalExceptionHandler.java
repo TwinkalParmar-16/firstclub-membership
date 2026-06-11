@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(NotFoundException.class)
+    @ExceptionHandler(SubscriptionNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFound(
-            NotFoundException ex) {
+            SubscriptionNotFoundException ex) {
 
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)

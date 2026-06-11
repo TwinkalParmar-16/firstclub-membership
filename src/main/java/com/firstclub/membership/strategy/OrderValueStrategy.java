@@ -11,9 +11,6 @@ public class OrderValueStrategy
 
     @Override
     public boolean isEligible(UserMetrics metrics) {
-
-        return metrics.getMonthlySpend()
-                .compareTo(BigDecimal.valueOf(5000))
-                >= 0;
+        return metrics.getMonthlySpend().compareTo(BigDecimal.valueOf(5000)) >= 0;
     }
 }

@@ -5,13 +5,16 @@ import com.firstclub.membership.dto.UpdateTierRequest;
 import com.firstclub.membership.enums.PlanType;
 import com.firstclub.membership.enums.SubscriptionStatus;
 import com.firstclub.membership.enums.TierType;
-import com.firstclub.membership.exception.NotFoundException;
+import com.firstclub.membership.exception.SubscriptionNotFoundException;
 import com.firstclub.membership.factory.MembershipPlanFactory;
 import com.firstclub.membership.model.MembershipSubscription;
+import com.firstclub.membership.model.TierBenefit;
 import com.firstclub.membership.repository.MembershipRepository;
 import com.firstclub.membership.service.MembershipServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,17 +25,11 @@ class MembershipServiceImplTest {
     @BeforeEach
     void setup() {
 
-        MembershipRepository repository =
-                new MembershipRepository();
+        MembershipRepository repository = new MembershipRepository();
+        MembershipPlanFactory planFactory = new MembershipPlanFactory();
+        Map<TierType, TierBenefit> tierBenefits = Map.of();
 
-        MembershipPlanFactory planFactory =
-                new MembershipPlanFactory();
-
-        service =
-                new MembershipServiceImpl(
-                        repository,
-                        planFactory
-                );
+        service = new MembershipServiceImpl(repository, planFactory, tierBenefits);
     }
 
     @Test
@@ -110,7 +107,7 @@ class MembershipServiceImplTest {
                 "Twinkal");
 
         assertThrows(
-                NotFoundException.class,
+                SubscriptionNotFoundException.class,
                 () -> service.getSubscription("USER_3")
         );
     }

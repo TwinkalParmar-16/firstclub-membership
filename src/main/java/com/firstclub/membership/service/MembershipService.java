@@ -4,6 +4,7 @@ import com.firstclub.membership.dto.SubscribeRequest;
 import com.firstclub.membership.dto.UpdateTierRequest;
 import com.firstclub.membership.model.MembershipPlan;
 import com.firstclub.membership.model.MembershipSubscription;
+import com.firstclub.membership.model.TierBenefit;
 
 import java.util.List;
 
@@ -11,16 +12,13 @@ public interface MembershipService {
 
     List<MembershipPlan> getPlans();
 
-    MembershipSubscription subscribe(
-            SubscribeRequest request);
+    MembershipSubscription subscribe(SubscribeRequest request);
 
-    MembershipSubscription getSubscription(
-            String userId);
+    MembershipSubscription getSubscription(String userId);
 
-    MembershipSubscription updateTier(
-            String userId,
-            UpdateTierRequest request);
+    MembershipSubscription updateTier(String userId, UpdateTierRequest request);
 
-    void cancelSubscription(
-            String userId);
+    TierBenefit getBenefits(String userId);
+
+    void cancelSubscription(String userId);
 }

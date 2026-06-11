@@ -4,14 +4,10 @@ import com.firstclub.membership.model.UserMetrics;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CohortStrategy
-        implements TierEvaluationStrategy {
+public class CohortStrategy implements TierEvaluationStrategy {
 
     @Override
     public boolean isEligible(UserMetrics metrics) {
-
-        return "VIP".equalsIgnoreCase(
-                metrics.getCohort()
-        );
+        return "VIP".equalsIgnoreCase(metrics.getCohort());
     }
 }
